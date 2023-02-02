@@ -1,19 +1,18 @@
 import React from "react";
-
-import RegisterUsers from "../UserItems/UserItem";
-import './UserList.css';
+import Card from "../../UI/Card";
+import classes from './UserList.module.css';
 
 const UserList = props => {
     return (
-        <ul className="goal-list">
-            {props.items.map(user => (
-                <RegisterUsers
-                key = {user.id}
-                id = {user.id}
-                onDelete={props.onDeleteItem}
-                >{`${user.text1} ( ${user.text2} year old)`}</RegisterUsers>
-            ))}
-        </ul>
+        <Card className={classes.users}>
+            <ul>
+                {props.items.map((user) => (
+                    <li key={user.id}>
+                        {user.name} ({user.age} years old)
+                    </li>
+                ))}
+            </ul>
+        </Card>
     )
 }
 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import UserForm from './Components/User/UserForm/UserForm';
 import UserList from './Components/User/UserList/UserList';
@@ -13,30 +13,11 @@ function App() {
       return updatedGoals;
     });
   };
-  const deleteItemHandler = goalId => {
-    setCourseGoals(prevGoals => {
-      const updatedGoals = prevGoals.filter(goal => goal.id !== goalId);
-      return updatedGoals;
-    });
-  };
-  let content = (
-    <p style={{ textAlign: 'center' }}>No user found!!</p>
-  );
-  if (courseGoals.length > 0) {
-    content = (
-      <UserList items={courseGoals} onDeleteItem={deleteItemHandler}></UserList>
-    );
-  }
   return (
-    <div>
-      <section id="goal-form">
+    <React.Fragment>
       <UserForm onAddGoal={addGoalHandler}></UserForm>
-      </section>
-      <section id="goal-form">
-      {content}
-      </section>
-      
-    </div>
+      <UserList items={courseGoals}></UserList>
+    </React.Fragment>
   )
 }
 
